@@ -12,13 +12,20 @@ char * my_strtok ( char * str, const char * d ) {
 	while (*str) {
 		//if (strrchr(d, (int) *pos)) {
 		if (strrchr(d, (int) *str)) {
+			if (count > 1) {
+				gp = str;
+				return &ret;
+				}
 			//pos = *str++;
 			*str++;
+			continue;
 		} else {
 			count++;
 			ret[count-1] = *pos++;
 		}
+		*str++;
 	}
+	return NULL;
 	
 }
 
