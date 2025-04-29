@@ -5,7 +5,7 @@ char *my_strrchr (const char *str, int c) {
 	long lenth = (long) strlen(str);
 	while(lenth) {
 		if (c == (int) *(str+lenth--)) {
-			return str+lenth+1;
+			return (char *)str+lenth+1;
 		}
 	}
 	return NULL;

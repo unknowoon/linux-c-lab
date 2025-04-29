@@ -2,9 +2,9 @@
 #include <string.h>
 
 const char *my_strpbrk(const char *str1, const char* str2) {
-	char *pos1 = str1;
+	char *pos1 = (char *)str1;
 	while (*pos1) {
-		char *pos2 = str2;
+		char *pos2 = (char *)str2;
 		while (*pos2) {
 			if (*pos1==*pos2) {
 				return pos1;

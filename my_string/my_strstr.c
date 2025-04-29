@@ -5,7 +5,7 @@ char *my_strstr(char  *str1, const char *str2) {
 	while (*str1) {
 		char *pos = str1;
 		char *ret = pos;
-		char *buf = str2;
+		char *buf = (char *)str2;
 		long lenth = (long) strlen(str2);
 
 		while (*buf) {

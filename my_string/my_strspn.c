@@ -7,7 +7,7 @@ size_t my_strspn(const char *str1, const char *str2) {
 
 	while (*str1) {
 		int pos = (int) *str1++;
-		char *buf = str2;
+		char *buf = (char *)str2;
 		while (*buf) {
 			if (pos == (int) *buf++) {
 				count++;

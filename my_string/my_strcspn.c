@@ -6,8 +6,8 @@ size_t my_strcspn (const char *str1, const char *str2) {
 	long ret = sizeof(str1);
 	int count = 0;
 	while (*str1) {
-		char *b1 = &*str1++;
-		char *b2 = str2;
+		char *b1 = (char *)&*str1++;
+		char *b2 = (char *)str2;
 		while (*b2) {
 			if (*b1 == *b2++) {
 				return (size_t) count;

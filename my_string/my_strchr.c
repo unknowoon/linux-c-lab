@@ -2,9 +2,10 @@
 #include <string.h>
 
 char *my_strchr(const char *cs, int c) {
-    while (*cs) {
-        if (*cs++ == (char) c) {
-            return --cs;
+	char *pcs = (char *)cs;
+    while (*pcs) {
+        if (*pcs++ == (char) c) {
+            return --pcs;
         }
     }
 
