@@ -91,10 +91,13 @@ void logger_close(void) {
     pthread_mutex_unlock(&log_mutex);
 }
 
-void log_write_internal(LogLevel level, const char *file, int line, const char *format, va_list args) {
+void log_write(LogLevel level, const char *file, const char *function, int line, const char *format, ...) {
     if (level < g_logger.level) {
         return;
     }
+    
+    va_list args;
+    va_start(args, format);
     
     pthread_mutex_lock(&log_mutex);
     
@@ -116,9 +119,9 @@ void log_write_internal(LogLevel level, const char *file, int line, const char *
     
     // 콘솔 출력
     if (g_logger.console_output) {
-        fprintf(stderr, "%s[%s] [%s] [%s:%d]%s ", 
+        fprintf(stderr, "%s[%s] [%s] [%s] [%s:%d]%s ",
                 level_colors[level], time_str, level_strings[level], 
-                filename, line, color_reset);
+                function, filename, line, color_reset);
         vfprintf(stderr, format, args);
         fprintf(stderr, "\n");
         fflush(stderr);
@@ -126,47 +129,13 @@ void log_write_internal(LogLevel level, const char *file, int line, const char *
     
     // 파일 출력
     if (g_logger.file_output && g_logger.file != NULL) {
-        fprintf(g_logger.file, "[%s] [%s] [%s:%d] ", 
-                time_str, level_strings[level], filename, line);
+        fprintf(g_logger.file, "[%s] [%s] [%s] [%s:%d] ",
+                time_str, level_strings[level], function, filename, line);
         vfprintf(g_logger.file, format, args);
         fprintf(g_logger.file, "\n");
         fflush(g_logger.file);
     }
     
     pthread_mutex_unlock(&log_mutex);
-}
-
-void log_debug_internal(const char *file, int line, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    log_write_internal(LOG_DEBUG, file, line, format, args);
-    va_end(args);
-}
-
-void log_info_internal(const char *file, int line, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    log_write_internal(LOG_INFO, file, line, format, args);
-    va_end(args);
-}
-
-void log_warning_internal(const char *file, int line, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    log_write_internal(LOG_WARNING, file, line, format, args);
-    va_end(args);
-}
-
-void log_error_internal(const char *file, int line, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    log_write_internal(LOG_ERROR, file, line, format, args);
-    va_end(args);
-}
-
-void log_fatal_internal(const char *file, int line, const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    log_write_internal(LOG_FATAL, file, line, format, args);
     va_end(args);
 }

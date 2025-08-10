@@ -33,19 +33,14 @@ void logger_enable_console(int enable);
 void logger_enable_file(int enable);
 void logger_close(void);
 
-// 내부 함수들 (직접 호출하지 마세요)
-void log_write_internal(LogLevel level, const char *file, int line, const char *format, va_list args);
-void log_debug_internal(const char *file, int line, const char *format, ...);
-void log_info_internal(const char *file, int line, const char *format, ...);
-void log_warning_internal(const char *file, int line, const char *format, ...);
-void log_error_internal(const char *file, int line, const char *format, ...);
-void log_fatal_internal(const char *file, int line, const char *format, ...);
+// 내부 로그 작성 함수 (직접 호출하지 마세요)
+void log_write(LogLevel level, const char *file, const char *function, int line, const char *format, ...);
 
 // 매크로를 통한 로그 출력 (파일명과 라인 번호 자동 전달)
-#define log_debug(...)    log_debug_internal(__FILE__, __LINE__, __VA_ARGS__)
-#define log_info(...)     log_info_internal(__FILE__, __LINE__, __VA_ARGS__)
-#define log_warning(...)  log_warning_internal(__FILE__, __LINE__, __VA_ARGS__)
-#define log_error(...)    log_error_internal(__FILE__, __LINE__, __VA_ARGS__)
-#define log_fatal(...)    log_fatal_internal(__FILE__, __LINE__, __VA_ARGS__)
+#define log_debug(...)    log_write(LOG_DEBUG, __FILE__, __func__, __LINE__, __VA_ARGS__)
+#define log_info(...)     log_write(LOG_INFO, __FILE__, __func__, __LINE__, __VA_ARGS__)
+#define log_warning(...)  log_write(LOG_WARNING, __FILE__, __func__, __LINE__, __VA_ARGS__)
+#define log_error(...)    log_write(LOG_ERROR, __FILE__, __func__, __LINE__, __VA_ARGS__)
+#define log_fatal(...)    log_write(LOG_FATAL, __FILE__, __func__, __LINE__, __VA_ARGS__)
 
 #endif // LOGGER_H
