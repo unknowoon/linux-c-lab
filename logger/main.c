@@ -1,4 +1,4 @@
-int A();  // A 함수 선언
+int A();
 
 int main() {
     A();
