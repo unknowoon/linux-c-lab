@@ -1,4 +1,4 @@
-#include "logger.h"
+#include "../inc/logger.h"
 #include <unistd.h>
 #include <pthread.h>
 

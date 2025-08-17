@@ -27,11 +27,11 @@ typedef struct {
 Logger g_logger;
 
 // 함수 프로토타입
-static void logger_init(const char *filename, LogLevel level);
-static void logger_set_level(LogLevel level);
-static void logger_enable_console(int enable);
-static void logger_enable_file(int enable);
-static void logger_close(void);
+void logger_init(const char *filename, LogLevel level);
+void logger_set_level(LogLevel level);
+void logger_enable_console(int enable);
+void logger_enable_file(int enable);
+void logger_close(void);
 
 // 내부 로그 작성 함수 (직접 호출하지 마세요)
 void log_write(LogLevel level, const char *file, const char *function, int line, const char *format, ...);
