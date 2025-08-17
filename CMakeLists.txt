@@ -9,6 +9,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic")
 add_library(logger STATIC
     logger/logger.c
     logger/logger.h
+        linked_list/linked_list.c
 )
 target_include_directories(logger PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/logger)
 

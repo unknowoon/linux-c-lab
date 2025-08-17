@@ -62,25 +62,25 @@ void logger_init(const char *filename, LogLevel level) {
     pthread_mutex_unlock(&log_mutex);
 }
 
-void logger_set_level(LogLevel level) {
+static void logger_set_level(LogLevel level) {
     pthread_mutex_lock(&log_mutex);
     g_logger.level = level;
     pthread_mutex_unlock(&log_mutex);
 }
 
-void logger_enable_console(int enable) {
+static void logger_enable_console(int enable) {
     pthread_mutex_lock(&log_mutex);
     g_logger.console_output = enable;
     pthread_mutex_unlock(&log_mutex);
 }
 
-void logger_enable_file(int enable) {
+static void logger_enable_file(int enable) {
     pthread_mutex_lock(&log_mutex);
     g_logger.file_output = enable;
     pthread_mutex_unlock(&log_mutex);
 }
 
-void logger_close(void) {
+static void logger_close(void) {
     pthread_mutex_lock(&log_mutex);
     
     if (g_logger.file != NULL) {
