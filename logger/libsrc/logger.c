@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-// 전역 로거 인스턴스
+// C99 지정 초기화자 (Designated Initializers)
 Logger g_logger = {
     .file = NULL,
     .level = LOG_INFO,
@@ -40,6 +40,8 @@ void logger_init(const char *filename, LogLevel level) {
     pthread_mutex_lock(&log_mutex);
     
     // 기존 파일이 열려있다면 닫기
+    // comment: fort() 후 logger_init이 호출되었다고 가정해도 문제는 없다.
+    // 자식이 전해받은 파일포인터를 지우고 (fd는 공유되지만, 파일 포인터는 독립적인 메모리에 기록된다.) 새로운 파일을 포인팅 한다.
     if (g_logger.file != NULL) {
         fclose(g_logger.file);
         g_logger.file = NULL;
@@ -107,8 +109,7 @@ void log_write(LogLevel level, const char *file, const char *function, int line,
     struct tm *local_time = localtime(&now);
     
     char time_str[32];
-    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", local_time);
-    
+
     // 파일명에서 경로 제거 (마지막 '/' 이후만 표시)
     const char *filename = strrchr(file, '/');
     if (filename) {
