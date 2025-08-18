@@ -22,6 +22,8 @@ logger/
 ├── src/                   # 예제/테스트 소스
 │   ├── main.c            # 간단한 사용 예제
 │   └── test_logger.c     # 종합 테스트 프로그램
+├── tests/                 # 단위 테스트
+│   └── test_logger.cpp   # Google Test 기반 단위 테스트
 ├── build/                 # 빌드 오브젝트들 (자동 생성)
 ├── liblogger.a           # 정적 라이브러리 (빌드 후 생성)
 ├── Makefile              # 빌드 스크립트
@@ -40,10 +42,12 @@ make
 make liblogger.a          # 라이브러리만 빌드
 make test_logger          # 테스트 프로그램만 빌드
 make main                 # 메인 예제만 빌드
+make gtest                # Google Test 단위 테스트 빌드
 
 # 실행
 make test                 # 테스트 프로그램 실행
 make run                  # 메인 예제 실행
+make run_gtest            # Google Test 단위 테스트 실행
 
 # 정리
 make clean                # 빌드 결과물 삭제
@@ -158,8 +162,40 @@ void* worker_thread(void* arg) {
 [2025-08-17 22:24:24] [ERROR] [main] [main.c:12] This is an error message
 ```
 
+## 단위 테스트 (Google Test)
+
+Google Test 기반의 단위 테스트가 포함되어 있습니다:
+
+### Google Test 설치
+```bash
+# macOS (Homebrew)
+brew install googletest
+
+# Ubuntu/Debian
+sudo apt-get install libgtest-dev
+
+# 수동 설치
+git clone https://github.com/google/googletest.git
+cd googletest && mkdir build && cd build
+cmake .. && make && sudo make install
+```
+
+### 테스트 실행
+```bash
+make gtest && make run_gtest
+```
+
+### 포함된 테스트
+- 로거 초기화 테스트
+- 로그 레벨 필터링 테스트
+- 파일 출력 제어 테스트
+- 포맷 문자열 테스트
+- 멀티스레드 안전성 테스트
+- 로거 종료 테스트
+
 ## 빌드 요구사항
 
 - GCC 또는 Clang 컴파일러
 - POSIX 호환 시스템 (pthread 지원)
 - Make 빌드 도구
+- Google Test (단위 테스트용, 선택사항)

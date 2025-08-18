@@ -1,5 +1,0 @@
-/Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug/CMakeFiles/logger.dir
-/Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug/CMakeFiles/test_logger.dir
-/Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug/CMakeFiles/my_string.dir
-/Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug/CMakeFiles/rebuild_cache.dir

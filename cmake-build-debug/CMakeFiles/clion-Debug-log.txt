@@ -1,4 +1,1 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/woojibeom/Documents/WorkSpace/linux-c-lab -B /Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/woojibeom/Documents/WorkSpace/linux-c-lab/cmake-build-debug
+/Users/woojibeom/Documents/WorkSpace/linux-c-lab에서 CMakeLists.txt을(를) 찾을 수 없습니다 CMakeLists.txt 선택
