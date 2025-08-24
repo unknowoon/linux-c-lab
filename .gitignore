@@ -1,3 +1,9 @@
 
+*.log
+*.a
 *.o
 *.out
+/comm/comm
+/comm/CommManager
+/logger/main
+/logger/test_logger

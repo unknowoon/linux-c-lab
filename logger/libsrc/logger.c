@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <locale.h>
 
 // C99 지정 초기화자 (Designated Initializers)
 Logger g_logger = {
@@ -39,6 +40,9 @@ static pthread_mutex_t log_mutex = PTHREAD_MUTEX_INITIALIZER;
 void logger_init(const char *filename, LogLevel level) {
     pthread_mutex_lock(&log_mutex);
     
+    // UTF-8 로케일 설정
+    setlocale(LC_ALL, "");
+    
     // 기존 파일이 열려있다면 닫기
     // comment: fort() 후 logger_init이 호출되었다고 가정해도 문제는 없다.
     // 자식이 전해받은 파일포인터를 지우고 (fd는 공유되지만, 파일 포인터는 독립적인 메모리에 기록된다.) 새로운 파일을 포인팅 한다.
@@ -56,6 +60,15 @@ void logger_init(const char *filename, LogLevel level) {
         if (g_logger.file == NULL) {
             fprintf(stderr, "Failed to open log file: %s\n", g_logger.filename);
             g_logger.file_output = 0;
+        } else {
+            // UTF-8 인코딩 보장을 위한 BOM 헤더 추가 (파일이 새로 생성된 경우만)
+            fseek(g_logger.file, 0, SEEK_END);
+            if (ftell(g_logger.file) == 0) {
+                // 새 파일인 경우 UTF-8 BOM 추가
+                unsigned char utf8_bom[] = {0xEF, 0xBB, 0xBF};
+                fwrite(utf8_bom, sizeof(utf8_bom), 1, g_logger.file);
+                fflush(g_logger.file);
+            }
         }
     }
     
@@ -109,6 +122,7 @@ void log_write(LogLevel level, const char *file, const char *function, int line,
     struct tm *local_time = localtime(&now);
     
     char time_str[32];
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", local_time);
 
     // 파일명에서 경로 제거 (마지막 '/' 이후만 표시)
     const char *filename = strrchr(file, '/');
