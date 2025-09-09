@@ -3,6 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+  </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
   </component>
@@ -24,10 +27,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb1a1c69-6860-480d-84ad-94bbc844a8df" name="변경" comment="chore: 주석">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="eb1a1c69-6860-480d-84ad-94bbc844a8df" name="변경" comment="feat: CommManager, Comm">
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger/libsrc/logger.c" beforeDir="false" afterPath="$PROJECT_DIR$/logger/libsrc/logger.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comm/inc/comm.h" beforeDir="false" afterPath="$PROJECT_DIR$/comm/inc/comm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comm/src/Comm.c" beforeDir="false" afterPath="$PROJECT_DIR$/comm/src/Comm.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comm/src/CommManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/comm/src/CommManager.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +194,8 @@
       <option name="presentableId" value="Default" />
       <updated>1755517911942</updated>
       <workItem from="1755517913032" duration="5838000" />
-      <workItem from="1755776830647" duration="14662000" />
+      <workItem from="1755776830647" duration="14726000" />
+      <workItem from="1756624833236" duration="6105000" />
     </task>
     <task id="LOCAL-00001" summary="chore:">
       <option name="closed" value="true" />
@@ -207,7 +213,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755524492086</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: CommManager, Comm">
+      <option name="closed" value="true" />
+      <created>1756040928657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1756040928657</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +241,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="chore:" />
     <MESSAGE value="chore: 주석" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: 주석" />
+    <MESSAGE value="feat: CommManager, Comm" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: CommManager, Comm" />
   </component>
 </project>

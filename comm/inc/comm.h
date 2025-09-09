@@ -22,7 +22,7 @@ typedef struct {
 } comm_context_t;
 
 int comm_init(int socket_fd);
-int comm_handle_data(void);
-void comm_cleanup(void);
+int comm_handle_data(int socket_fd);
+void comm_cleanup(int socket_fd);
 
 #endif /* COMM_H */

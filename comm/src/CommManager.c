@@ -73,18 +73,10 @@ void handle_client_connection(int server_fd) {
         } else if (pid == 0) {
             close(server_fd);
             
-            if (dup2(client_fd, STDIN_FILENO) < 0) {
-                log_error("dup2 stdin failed");
-                exit(1);
-            }
-            if (dup2(client_fd, STDOUT_FILENO) < 0) {
-                log_error("dup2 stdout failed");
-                exit(1);
-            }
+            char fd_str[32];
+            snprintf(fd_str, sizeof(fd_str), "%d", client_fd);
             
-            close(client_fd);
-            
-            execl("./comm", "comm", NULL);
+            execl("./comm", "comm", fd_str, NULL);
             log_error("execl failed");
             exit(1);
         } else {

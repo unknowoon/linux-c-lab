@@ -10,14 +10,14 @@ int comm_init(int socket_fd) {
     return 0;
 }
 
-int comm_handle_data(void) {
+int comm_handle_data(int socket_fd) {
     char buffer[BUFFER_SIZE];
     ssize_t bytes_received, bytes_sent;
     
     while (1) {
         memset(buffer, 0, BUFFER_SIZE);
         
-        bytes_received = read(STDIN_FILENO, buffer, BUFFER_SIZE - 1);
+        bytes_received = read(socket_fd, buffer, BUFFER_SIZE - 1);
         
         if (bytes_received <= 0) {
             if (bytes_received == 0) {
@@ -39,7 +39,7 @@ int comm_handle_data(void) {
         char response[BUFFER_SIZE];
         snprintf(response, BUFFER_SIZE, "Echo: %s", buffer);
         
-        bytes_sent = write(STDOUT_FILENO, response, strlen(response));
+        bytes_sent = write(socket_fd, response, strlen(response));
         if (bytes_sent < 0) {
             log_error("Comm: write failed: %s", strerror(errno));
             break;
@@ -51,16 +51,21 @@ int comm_handle_data(void) {
     return 0;
 }
 
-void comm_cleanup(void) {
+void comm_cleanup(int socket_fd) {
     log_info("Comm: Socket closed");
-    // Note: stdin/stdout will be automatically closed when process exits
-    close(STDIN_FILENO);
-    close(STDOUT_FILENO);
+    close(socket_fd);
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
     char log_filename[256];
-    int socket_fd = STDIN_FILENO;
+    int socket_fd;
+    
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <socket_fd>\n", argv[0]);
+        exit(1);
+    }
+    
+    socket_fd = atoi(argv[1]);
     
     snprintf(log_filename, sizeof(log_filename), "comm_%d.log", getpid());
     logger_init(log_filename, LOG_INFO);
@@ -71,7 +76,7 @@ int main(void) {
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
     
-    if (getpeername(STDIN_FILENO, (struct sockaddr *)&client_addr, &client_len) == 0) {
+    if (getpeername(socket_fd, (struct sockaddr *)&client_addr, &client_len) == 0) {
         log_info("Comm: Handling client %s:%d", 
                inet_ntoa(client_addr.sin_addr), 
                ntohs(client_addr.sin_port));
@@ -79,8 +84,8 @@ int main(void) {
         log_info("Comm: Handling client (address unknown)");
     }
     
-    comm_handle_data();
-    comm_cleanup();
+    comm_handle_data(socket_fd);
+    comm_cleanup(socket_fd);
     
     log_info("Comm: Process %d terminating", getpid());
     logger_close();
