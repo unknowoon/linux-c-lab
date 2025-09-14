@@ -27,12 +27,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb1a1c69-6860-480d-84ad-94bbc844a8df" name="변경" comment="feat: CommManager, Comm">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="eb1a1c69-6860-480d-84ad-94bbc844a8df" name="변경" comment="chore">
+      <change afterPath="$PROJECT_DIR$/comm/inc/CommLib.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/comm/libsrc/CommLib.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comm/inc/comm.h" beforeDir="false" afterPath="$PROJECT_DIR$/comm/inc/comm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comm/src/Comm.c" beforeDir="false" afterPath="$PROJECT_DIR$/comm/src/Comm.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comm/src/CommManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/comm/src/CommManager.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +61,12 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Users/woojibeom/Documents/WorkSpace/linux-c-lab/comm/src/Comm.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/woojibeom/Documents/WorkSpace/linux-c-lab/comm/src/Comm.c" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
@@ -131,6 +132,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/comm/inc" />
       <recent name="$PROJECT_DIR$/temp" />
     </key>
   </component>
@@ -195,7 +197,8 @@
       <updated>1755517911942</updated>
       <workItem from="1755517913032" duration="5838000" />
       <workItem from="1755776830647" duration="14726000" />
-      <workItem from="1756624833236" duration="6105000" />
+      <workItem from="1756624833236" duration="6402000" />
+      <workItem from="1757505268362" duration="13804000" />
     </task>
     <task id="LOCAL-00001" summary="chore:">
       <option name="closed" value="true" />
@@ -221,7 +224,23 @@
       <option name="project" value="LOCAL" />
       <updated>1756040928657</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: CommManager, Comm">
+      <option name="closed" value="true" />
+      <created>1757423993565</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1757423993565</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore">
+      <option name="closed" value="true" />
+      <created>1757855040559</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1757855040559</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +261,7 @@
     <MESSAGE value="chore:" />
     <MESSAGE value="chore: 주석" />
     <MESSAGE value="feat: CommManager, Comm" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: CommManager, Comm" />
+    <MESSAGE value="chore" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore" />
   </component>
 </project>
