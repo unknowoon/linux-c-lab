@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 #include <sys/socket.h>
-#include <sys/wait.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <errno.h>
 #include "../inc/comm.h"
 
 #define PORT 8080
@@ -20,13 +17,13 @@ int create_server_socket(int port) {
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         const int err = errno;
         log_error("socket failed: %s", strerror(err));
-        return -1;
+        exit(1);
     }
 
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
         log_error("setsockopt failed: %s", strerror(errno));
         close(server_fd);
-        return -1;
+        exit(1);
     }
 
     address.sin_family = AF_INET;
@@ -36,13 +33,13 @@ int create_server_socket(int port) {
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
         log_error("bind failed: %s", strerror(errno));
         close(server_fd);
-        return -1;
+        exit(1);
     }
 
     if (listen(server_fd, BACKLOG) < 0) {
         log_error("listen failed: %s", strerror(errno));
         close(server_fd);
-        return -1;
+        exit(1);
     }
 
     log_info("CommManager: Server listening on port %d", port);

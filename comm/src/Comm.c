@@ -1,4 +1,4 @@
-#include "../inc/comm.h"
+#include "comm.h"
 
 int comm_init(int socket_fd) {
     if (socket_fd < 0) {
